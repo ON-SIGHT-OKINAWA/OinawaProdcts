@@ -3,111 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>沖縄特産品 BtoB卸売カタログ【バイヤー専用ページ】</title>
+    <title>沖縄特産品 BtoB卸売ポータル【社内用】</title>
     <style>
-        :root {
-            --primary-color: #008080;
-            --accent-color: #e6005c;
-            --bg-color: #f4f7f6;
-            --text-color: #333;
-        }
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--bg-color);
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
             margin: 0;
             padding: 0;
-            color: var(--text-color);
-            line-height: 1.6;
+            color: #333;
         }
         header {
-            background-color: var(--primary-color);
+            background-color: #008080;
             color: white;
-            padding: 20px 40px;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         header h1 { margin: 0; font-size: 24px; }
-        .badge {
-            background-color: white;
-            color: var(--primary-color);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-        }
         .container {
-            max-width: 1200px;
+            max-width: 950px;
             margin: 40px auto;
-            padding: 0 20px;
-        }
-        .intro {
-            background: white;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
-            border-left: 5px solid var(--primary-color);
-        }
-        .intro h2 { margin-top: 0; color: var(--primary-color); }
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .product-card {
             background: white;
+            border: 2px dashed #008080;
             border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
         }
-        .product-image {
-            width: 100%;
-            height: 220px;
-            background-size: cover;
-            background-position: center;
-            background-color: #ddd;
+        h2 { color: #333; margin-top: 0; border-bottom: 2px solid #008080; padding-bottom: 8px; }
+        .form-group {
+            margin-bottom: 20px;
         }
-        .product-info {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-        .product-name {
-            font-size: 18px;
+        label {
+            display: block;
             font-weight: bold;
-            margin: 0 0 15px 0;
-        }
-        .product-details {
-            border-top: 1px dashed #eee;
-            padding-top: 15px;
-        }
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
             margin-bottom: 8px;
-            font-size: 15px;
         }
-        .detail-label { color: #666; }
-        .detail-value { font-weight: bold; }
-        .price-value { color: var(--accent-color); font-size: 18px; }
-        .no-products {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 50px;
-            background: white;
-            border-radius: 8px;
-            color: #888;
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .btn-submit {
+            background-color: #008080;
+            color: white;
+            border: none;
+            padding: 12px 20px;
             font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 200px;
         }
-        footer {
+        .btn-submit:hover { background-color: #005a5a; }
+        
+        /* 登録済商品リストのスタイル */
+        .manager-section {
+            margin-top: 50px;
+        }
+        .product-list-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: white;
+        }
+        .product-list-table th, .product-list-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .product-list-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        .thumb-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .action-btns {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-edit {
+            background-color: #ffc107;
+            color: #212529;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-edit:hover { background-color: #e0a800; }
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-delete:hover { background-color: #bd2130; }
+        .no-data {
             text-align: center;
-            padding: 40px 20px;
             color: #888;
-            font-size: 14px;
+            padding: 20px;
         }
     </style>
 </head>
@@ -115,60 +118,156 @@
 
     <header>
         <h1>🌺 沖縄特産品 BtoB卸売ポータル</h1>
-        <div class="badge">バイヤー専用カタログ</div>
+        <div>【社内管理用画面】</div>
     </header>
 
     <div class="container">
-        <div class="intro">
-            <h2>日本の旬を、沖縄から世界へ。</h2>
-            <p>沖縄の豊かな自然とはぐくまれた厳選特産品の卸売カタログです。各商品の卸価格、最低ロット（MOQ）等の条件は下記をご確認ください。</p>
-        </div>
-
-        <div class="product-grid" id="catalogGrid">
+        <h2>【社内用】新商品・写真の追加フォーム</h2>
+        
+        <form id="productForm">
+            <div class="form-group">
+                <label for="pName">商品名</label>
+                <input type="text" id="pName" placeholder="例：沖縄県産完熟マンゴー 4kg" required>
             </div>
+            
+            <div class="form-group">
+                <label for="pPrice">卸価格 (税別) ※数字のみ</label>
+                <input type="number" id="pPrice" placeholder="例：8000" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="pLot">最低ロット (MOQ)</label>
+                <input type="text" id="pLot" placeholder="例：5ケースから" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="pImage">商品写真</label>
+                <input type="file" id="pImage" accept="image/*" required>
+            </div>
+            
+            <button type="submit" class="btn-submit">サイトに商品を登録する</button>
+        </form>
+
+        <div class="manager-section">
+            <h2>現在登録済みの商品一覧（修正・削除用）</h2>
+            <table class="product-list-table">
+                <thead>
+                    <tr>
+                        <th>写真</th>
+                        <th>商品名</th>
+                        <th>卸価格</th>
+                        <th>最低ロット</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="managerTableBody">
+                    </tbody>
+            </table>
+        </div>
     </div>
 
-    <footer>
-        &copy; ON SIGHT OKINAWA All Rights Reserved.
-    </footer>
-
     <script>
-        function loadProducts() {
-            const grid = document.getElementById('catalogGrid');
+        // 一覧を表示する関数
+        function displayRegisteredProducts() {
+            const tbody = document.getElementById('managerTableBody');
             const products = JSON.parse(localStorage.getItem('okinawa_products')) || [];
             
             if (products.length === 0) {
-                grid.innerHTML = '<div class="no-products">現在、登録されている商品はありません。</div>';
+                tbody.innerHTML = '<tr><td colspan="5" class="no-data">現在、登録されている商品はありません。</td></tr>';
                 return;
             }
             
-            grid.innerHTML = ''; // クリア
+            tbody.innerHTML = '';
             
-            products.forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <div class="product-image" style="background-image: url('${product.image}');"></div>
-                    <div class="product-info">
-                        <div class="product-name">${product.name}</div>
-                        <div class="product-details">
-                            <div class="detail-row">
-                                <span class="detail-label">卸価格 (税別)</span>
-                                <span class="detail-value price-value">￥${Number(product.price).toLocaleString()}</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="detail-label">最低ロット (MOQ)</span>
-                                <span class="detail-value">${product.lot}</span>
-                            </div>
+            products.forEach((product, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><img src="${product.image}" class="thumb-img"></td>
+                    <td><strong>${product.name}</strong></td>
+                    <td>￥${Number(product.price).toLocaleString()}</td>
+                    <td>${product.lot}</td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="btn-edit" onclick="editPrice(${index})">金額を修正</button>
+                            <button class="btn-delete" onclick="deleteProduct(${index})">削除</button>
                         </div>
-                    </div>
+                    </td>
                 `;
-                grid.appendChild(card);
+                tbody.appendChild(tr);
             });
         }
 
-        // ページ読み込み時に実行
-        window.onload = loadProducts;
+        // ★新機能：金額だけを修正する処理★
+        function editPrice(index) {
+            let products = JSON.parse(localStorage.getItem('okinawa_products')) || [];
+            const currentProduct = products[index];
+            
+            // 画面にポップアップを出して、新しい金額を入力してもらう
+            const newPrice = prompt(`「${currentProduct.name}」の新しい卸価格を入力してください（半角数字のみ）`, currentProduct.price);
+            
+            // キャンセルされた場合、または空欄の場合は何もしない
+            if (newPrice === null || newPrice.trim() === "") return;
+            
+            // 入力されたものが数字かどうかチェック
+            if (isNaN(newPrice)) {
+                alert('数字以外が入力されました。修正をキャンセルします。');
+                return;
+            }
+            
+            // 金額を書き換えて保存
+            products[index].price = newPrice.trim();
+            localStorage.setItem('okinawa_products', JSON.stringify(products));
+            
+            // 画面を再描画
+            displayRegisteredProducts();
+            alert('金額を修正しました！お客さんページにも即時反映されます。');
+        }
+
+        // 商品を登録する処理
+        document.getElementById('productForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('pName').value;
+            const price = document.getElementById('pPrice').value;
+            const lot = document.getElementById('pLot').value;
+            const fileInput = document.getElementById('pImage');
+            const file = fileInput.files[0];
+            
+            const reader = new FileReader();
+            reader.onloadend = function() {
+                const base64Image = reader.result;
+                
+                let products = JSON.parse(localStorage.getItem('okinawa_products')) || [];
+                products.push({
+                    name: name,
+                    price: price,
+                    lot: lot,
+                    image: base64Image
+                });
+                
+                localStorage.setItem('okinawa_products', JSON.stringify(products));
+                
+                document.getElementById('productForm').reset();
+                displayRegisteredProducts();
+                alert('商品を登録しました！お客さんページにも即時反映されます。');
+            }
+            
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 商品を削除する処理
+        function deleteProduct(index) {
+            if (confirm('この商品を削除してもよろしいですか？（お客さんページからも消えます）')) {
+                let products = JSON.parse(localStorage.getItem('okinawa_products')) || [];
+                products.splice(index, 1);
+                localStorage.setItem('okinawa_products', JSON.stringify(products));
+                displayRegisteredProducts();
+            }
+        }
+
+        window.onload = displayRegisteredProducts;
     </script>
 </body>
 </html>
