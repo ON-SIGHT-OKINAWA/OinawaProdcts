@@ -12,7 +12,7 @@
             --text-color: #333;
         }
         body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--bg-color);
             margin: 0;
             padding: 0;
@@ -26,15 +26,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        header h1 { margin: 0; font-size: 24px; }
         .badge {
             background-color: white;
             color: var(--primary-color);
@@ -56,10 +49,7 @@
             margin-bottom: 40px;
             border-left: 5px solid var(--primary-color);
         }
-        .intro h2 {
-            margin-top: 0;
-            color: var(--primary-color);
-        }
+        .intro h2 { margin-top: 0; color: var(--primary-color); }
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -70,24 +60,15 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
             display: flex;
             flex-direction: column;
-        }
-        .product-card:hover {
-            transform: translateY(-5px);
         }
         .product-image {
             width: 100%;
             height: 220px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-weight: bold;
             background-size: cover;
             background-position: center;
+            background-color: #ddd;
         }
         .product-info {
             padding: 20px;
@@ -99,8 +80,6 @@
             font-size: 18px;
             font-weight: bold;
             margin: 0 0 15px 0;
-            height: 2.6em;
-            overflow: hidden;
         }
         .product-details {
             border-top: 1px dashed #eee;
@@ -112,15 +91,17 @@
             margin-bottom: 8px;
             font-size: 15px;
         }
-        .detail-label {
-            color: #666;
-        }
-        .detail-value {
-            font-weight: bold;
-        }
-        .price-value {
-            color: var(--accent-color);
-            font-size: 18px;
+        .detail-label { color: #666; }
+        .detail-value { font-weight: bold; }
+        .price-value { color: var(--accent-color); font-size: 18px; }
+        .no-products {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px;
+            background: white;
+            border-radius: 8px;
+            color: #888;
+            font-size: 16px;
         }
         footer {
             text-align: center;
@@ -143,21 +124,51 @@
             <p>沖縄の豊かな自然とはぐくまれた厳選特産品の卸売カタログです。各商品の卸価格、最低ロット（MOQ）等の条件は下記をご確認ください。</p>
         </div>
 
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=500&q=80');">
-                </div>
-                <div class="product-info">
-                    <div class="product-name">沖縄県産 完熟マンゴー（最高級アーウィン種）</div>
-                    <div class="product-details">
-                        <div class="detail-row">
-                            <span class="detail-label">卸価格 (税別)</span>
-                            <span class="detail-value price-value">お問い合わせ</span>
+        <div class="product-grid" id="catalogGrid">
+            </div>
+    </div>
+
+    <footer>
+        &copy; ON SIGHT OKINAWA All Rights Reserved.
+    </footer>
+
+    <script>
+        function loadProducts() {
+            const grid = document.getElementById('catalogGrid');
+            const products = JSON.parse(localStorage.getItem('okinawa_products')) || [];
+            
+            if (products.length === 0) {
+                grid.innerHTML = '<div class="no-products">現在、登録されている商品はありません。</div>';
+                return;
+            }
+            
+            grid.innerHTML = ''; // クリア
+            
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image" style="background-image: url('${product.image}');"></div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-details">
+                            <div class="detail-row">
+                                <span class="detail-label">卸価格 (税別)</span>
+                                <span class="detail-value price-value">￥${Number(product.price).toLocaleString()}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">最低ロット (MOQ)</span>
+                                <span class="detail-value">${product.lot}</span>
+                            </div>
                         </div>
-                        <div class="detail-row">
-                            <span class="detail-label">最低ロット (MOQ)</span>
-                            <span class="detail-value">5ケース〜</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">規格</span>
-                            <span
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // ページ読み込み時に実行
+        window.onload = loadProducts;
+    </script>
+</body>
+</html>
