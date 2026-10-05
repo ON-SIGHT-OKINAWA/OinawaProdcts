@@ -7,13 +7,12 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --primary-blue: #008da5;
             --ocean-blue: #0077b6;
-            --accent-coral: #ff6f61;
             --dark-text: #0f172a;
             --glass-bg: rgba(255, 255, 255, 0.88);
             --glass-card: rgba(255, 255, 255, 0.94);
@@ -30,7 +29,7 @@
             font-family: 'Noto Sans JP', sans-serif;
             color: #1e293b;
             line-height: 1.6;
-            /* 非常に明るく透明感のあるトロピカルビーチ写真 */
+            /* 明るく透明感のあるトロピカルビーチ写真 */
             background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=90') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
@@ -71,7 +70,7 @@
             padding: 2.5rem 1.5rem 4rem;
         }
 
-        /* 明るいヒーローセクション */
+        /* ヒーローセクション */
         .hero-banner {
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
@@ -202,53 +201,9 @@
             font-size: 1.15rem;
             font-weight: 800;
             color: var(--dark-text);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             line-height: 1.4;
             min-height: 2.8em;
-        }
-
-        .product-details {
-            background: #f0f9ff;
-            border: 1px solid #e0f2fe;
-            border-radius: 14px;
-            padding: 1rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-            font-size: 0.92rem;
-        }
-
-        .detail-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .detail-label {
-            color: #0369a1;
-            font-size: 0.82rem;
-            font-weight: 700;
-        }
-
-        .detail-value {
-            font-weight: 700;
-            color: #0f172a;
-        }
-
-        .price-value {
-            color: #d97706;
-            font-size: 1.35rem;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 800;
-        }
-
-        .price-unit {
-            font-size: 0.78rem;
-            color: #64748b;
-            margin-left: 2px;
         }
 
         /* アクションボタン */
@@ -348,7 +303,7 @@
         <!-- ヒーローセクション -->
         <div class="hero-banner">
             <h2>日本の旬を、沖縄から直接お届け</h2>
-            <p>沖縄の自然と素材を活かした厳選特産品の卸売専用カタログです。<br>卸価格や最低ロット（MOQ）等の詳細は下記をご確認ください。</p>
+            <p>沖縄の自然と素材を活かした厳選特産品の卸売専用カタログです。<br>詳細やご不明点は下記ボタンよりお気軽にお問い合わせください。</p>
             
             <!-- 検索バー -->
             <div class="search-container">
@@ -421,20 +376,6 @@
                     </div>
                     <div class="product-info">
                         <div class="product-name">${product.name}</div>
-                        
-                        <div class="product-details">
-                            <div class="detail-row">
-                                <span class="detail-label">卸価格 (税別)</span>
-                                <span class="detail-value">
-                                    <span class="price-value">￥${Number(product.price).toLocaleString()}</span>
-                                    <span class="price-unit">/ 単位</span>
-                                </span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="detail-label">最低ロット (MOQ)</span>
-                                <span class="detail-value">${product.lot}</span>
-                            </div>
-                        </div>
 
                         <button class="action-button" onclick="alert('${product.name} のサンプル・お見積もり依頼を送信します。')">
                             サンプル・見積りを依頼
