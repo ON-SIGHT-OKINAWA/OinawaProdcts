@@ -6,12 +6,15 @@
     <title>沖縄特産品 BtoB卸売ポータル</title>
     <style>
         :root {
-            --primary-color: #008080;
-            --primary-hover: #005a5a;
-            --bg-color: #f4f7f6;
+            --primary-gradient: linear-gradient(135deg, #00a896 0%, #028090 100%);
+            --accent-color: #f77f00;
+            --accent-hover: #d66800;
+            --bg-color: #f4f8f8;
             --card-bg: #ffffff;
-            --text-color: #333333;
-            --border-color: #e0e0e0;
+            --text-dark: #2c3e50;
+            --text-muted: #6c757d;
+            --price-color: #e63946;
+            --border-color: #e2e8f0;
         }
 
         body {
@@ -19,66 +22,96 @@
             background-color: var(--bg-color);
             margin: 0;
             padding: 0;
-            color: var(--text-color);
+            color: var(--text-dark);
+            min-height: 100vh;
         }
 
+        /* 沖縄風エメラルドグリーンヘッダー */
         header {
-            background-color: var(--primary-color);
+            background: var(--primary-gradient);
             color: white;
-            padding: 20px;
+            padding: 30px 20px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 168, 150, 0.2);
+            position: relative;
         }
 
         header h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 26px;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        header p {
+            margin: 8px 0 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+            letter-spacing: 1px;
         }
 
         .container {
             max-width: 1100px;
-            margin: 30px auto;
+            margin: 40px auto;
             padding: 0 20px;
         }
 
         .loading-status {
             text-align: center;
             font-size: 18px;
-            color: var(--primary-color);
+            color: #00a896;
             font-weight: bold;
-            padding: 40px 0;
+            padding: 60px 0;
         }
 
+        /* 商品カードグリッド */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
         }
 
         .product-card {
             background: var(--card-bg);
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            border: 1px solid var(--border-color);
         }
 
         .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .product-image-wrapper {
+            width: 100%;
+            height: 210px;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            position: relative;
         }
 
         .product-image {
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
-            background-color: #eee;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
         }
 
         .product-info {
-            padding: 15px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -87,47 +120,59 @@
         .product-title {
             font-size: 16px;
             font-weight: bold;
-            margin: 0 0 10px 0;
+            margin: 0 0 12px 0;
             line-height: 1.4;
             height: 2.8em;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
+            color: var(--text-dark);
         }
 
         .product-price {
-            font-size: 20px;
-            font-weight: bold;
-            color: #d9534f;
-            margin-bottom: 8px;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--price-color);
+            margin-bottom: 6px;
         }
 
         .product-lot {
             font-size: 13px;
-            color: #666;
-            margin-bottom: 15px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            background: #f1f5f9;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            width: fit-content;
         }
 
         .btn-detail {
             margin-top: auto;
-            background-color: var(--primary-color);
+            background-color: #00a896;
             color: white;
             border: none;
-            padding: 10px;
-            border-radius: 4px;
+            padding: 12px;
+            border-radius: 6px;
             font-weight: bold;
+            font-size: 14px;
             cursor: pointer;
             width: 100%;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, transform 0.1s;
             text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 168, 150, 0.3);
         }
 
         .btn-detail:hover {
-            background-color: var(--primary-hover);
+            background-color: #028090;
         }
 
-        /* 詳細モーダル（ポップアップ） */
+        .btn-detail:active {
+            transform: scale(0.98);
+        }
+
+        /* 詳細ポップアップ（モーダル） */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -135,6 +180,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
             display: none;
             justify-content: center;
             align-items: center;
@@ -146,13 +192,13 @@
         .modal-content {
             background: white;
             width: 100%;
-            max-width: 650px;
+            max-width: 600px;
             max-height: 90vh;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow-y: auto;
             position: relative;
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .modal-close {
@@ -165,6 +211,7 @@
             cursor: pointer;
             border: none;
             background: none;
+            line-height: 1;
         }
 
         .modal-close:hover {
@@ -173,24 +220,24 @@
 
         .modal-main-image {
             width: 100%;
-            max-height: 350px;
+            max-height: 320px;
             object-fit: contain;
-            background: #f9f9f9;
-            border-radius: 4px;
-            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
 
         .modal-title {
             font-size: 22px;
             margin: 0 0 10px 0;
-            color: #222;
+            color: var(--text-dark);
         }
 
         .modal-price {
-            font-size: 24px;
-            font-weight: bold;
-            color: #d9534f;
-            margin-bottom: 15px;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--price-color);
+            margin-bottom: 20px;
         }
 
         .modal-detail-list {
@@ -201,21 +248,21 @@
 
         .modal-detail-item {
             display: flex;
-            margin-bottom: 8px;
-            font-size: 14px;
+            margin-bottom: 10px;
+            font-size: 15px;
         }
 
         .modal-detail-label {
-            width: 120px;
+            width: 110px;
             font-weight: bold;
-            color: #555;
+            color: var(--text-muted);
         }
 
         .no-data {
             grid-column: 1 / -1;
             text-align: center;
-            color: #888;
-            padding: 50px 0;
+            color: var(--text-muted);
+            padding: 60px 0;
             font-size: 16px;
         }
     </style>
@@ -224,6 +271,7 @@
 
     <header>
         <h1>🌺 沖縄特産品 BtoB卸売ポータル</h1>
+        <p>OKINAWA B2B WHOLESALE PORTAL</p>
     </header>
 
     <div class="container">
@@ -263,7 +311,7 @@
                     grid.innerHTML = '';
 
                     if (!products || products.length === 0) {
-                        grid.innerHTML = '<div class="no-data">現在、表示できる商品はありません。</div>';
+                        grid.innerHTML = '<div class="no-data">現在、登録されている商品はありません。</div>';
                         return;
                     }
 
@@ -271,11 +319,12 @@
                         const card = document.createElement('div');
                         card.className = 'product-card';
                         
-                        // 金額フォーマット（例: 8000 -> ￥8,000）
                         const formattedPrice = `￥${Number(product.price).toLocaleString()}`;
 
                         card.innerHTML = `
-                            <img src="${product.image}" class="product-image" alt="${product.name}" loading="lazy">
+                            <div class="product-image-wrapper">
+                                <img src="${product.image}" class="product-image" alt="${product.name}" loading="lazy">
+                            </div>
                             <div class="product-info">
                                 <div class="product-title">${product.name}</div>
                                 <div class="product-price">${formattedPrice}</div>
@@ -288,7 +337,7 @@
                 })
                 .catch(err => {
                     console.error(err);
-                    document.getElementById('loadingStatus').innerText = 'データの読み込みに失敗しました。';
+                    document.getElementById('loadingStatus').innerText = 'データの読み込みに失敗しました。時間をおいて再読み込みしてください。';
                 });
         }
 
