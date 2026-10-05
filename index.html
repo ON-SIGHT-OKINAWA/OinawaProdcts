@@ -4,186 +4,479 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>沖縄特産品 BtoB卸売カタログ【バイヤー専用ページ】</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-color: #008080;
-            --accent-color: #e6005c;
-            --bg-color: #f4f7f6;
-            --text-color: #333;
+            --primary-blue: #008da5;
+            --accent-coral: #ff6f61;
+            --accent-sand: #f5f0e6;
+            --dark-text: #1d2d35;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-card: rgba(255, 255, 255, 0.92);
+            --glass-border: rgba(255, 255, 255, 0.6);
         }
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--bg-color);
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            color: var(--text-color);
-            line-height: 1.6;
         }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            /* 背景に沖縄の透明なビーチ写真を設定 */
+            background: linear-gradient(180deg, rgba(15, 32, 39, 0.3) 0%, rgba(32, 58, 67, 0.1) 100%),
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+        }
+
+        /* -----------------------------------
+           ヘッダーエリア (グラスモーフィズム)
+        ----------------------------------- */
         header {
-            background-color: var(--primary-color);
+            background: rgba(0, 114, 133, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             color: white;
-            padding: 20px 40px;
+            padding: 1.2rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
-        header h1 { margin: 0; font-size: 24px; }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-brand h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .badge {
-            background-color: white;
-            color: var(--primary-color);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
+            background: linear-gradient(135deg, #ff8c00, #ff5e62);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            box-shadow: 0 2px 10px rgba(255, 110, 99, 0.4);
         }
+
+        /* -----------------------------------
+           メインコンテナ
+        ----------------------------------- */
         .container {
             max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
         }
-        .intro {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
-            border-left: 5px solid var(--primary-color);
+
+        /* ヒーローセクション */
+        .hero-banner {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
         }
-        .intro h2 { margin-top: 0; color: var(--primary-color); }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #00c6ff, #0072ff);
+        }
+
+        .hero-banner h2 {
+            font-size: 1.8rem;
+            color: #005a68;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-banner p {
+            color: #4a5568;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* 検索・絞り込みバー */
+        .search-container {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: 1px solid #cbd5e0;
+            outline: none;
+            font-size: 0.95rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 141, 165, 0.2);
+            background: #ffffff;
+        }
+
+        /* -----------------------------------
+           商品グリッドレイアウト
+        ----------------------------------- */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
         }
+
+        /* 商品カード */
         .product-card {
-            background: white;
-            border-radius: 8px;
+            background: var(--glass-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
         }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 商品画像エリア */
+        .product-image-wrap {
+            position: relative;
+            width: 100%;
+            height: 230px;
+            overflow: hidden;
+            background-color: #e2e8f0;
+        }
+
         .product-image {
             width: 100%;
-            height: 220px;
+            height: 100%;
             background-size: cover;
             background-position: center;
-            background-color: #ddd;
+            transition: transform 0.5s ease;
         }
+
+        .product-card:hover .product-image {
+            transform: scale(1.06);
+        }
+
+        .category-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(4px);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* 商品情報エリア */
         .product-info {
-            padding: 20px;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
+
         .product-name {
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0 0 15px 0;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            min-height: 2.8em;
         }
+
         .product-details {
-            border-top: 1px dashed #eee;
-            padding-top: 15px;
+            background: rgba(245, 240, 230, 0.6);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.2rem;
         }
+
         .detail-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 8px;
-            font-size: 15px;
+            font-size: 0.9rem;
         }
-        .detail-label { color: #666; }
-        .detail-value { font-weight: bold; }
-        .price-value { color: var(--accent-color); font-size: 18px; }
-        .no-products {
+
+        .detail-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-label {
+            color: #64748b;
+            font-size: 0.82rem;
+        }
+
+        .detail-value {
+            font-weight: 700;
+            color: #334155;
+        }
+
+        .price-value {
+            color: var(--accent-coral);
+            font-size: 1.3rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+        }
+
+        .price-unit {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-left: 2px;
+        }
+
+        /* アクションボタン */
+        .action-button {
+            margin-top: auto;
+            width: 100%;
+            background: linear-gradient(135deg, #008da5, #005a68);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 141, 165, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .action-button:hover {
+            opacity: 0.92;
+            box-shadow: 0 6px 16px rgba(0, 141, 165, 0.4);
+            transform: translateY(-1px);
+        }
+
+        /* ステータス表示 */
+        .no-products, .loading {
             grid-column: 1 / -1;
             text-align: center;
-            padding: 50px;
-            background: white;
-            border-radius: 8px;
-            color: #888;
-            font-size: 16px;
+            padding: 4rem 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            color: #4a5568;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
-        .loading {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 50px;
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 18px;
+
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 141, 165, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-blue);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 1rem;
         }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* -----------------------------------
+           フッター
+        ----------------------------------- */
         footer {
             text-align: center;
-            padding: 40px 20px;
-            color: #888;
-            font-size: 14px;
+            padding: 2.5rem 1rem;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(10px);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* レスポンシブ調整 */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            .hero-banner {
+                padding: 1.5rem;
+            }
+            .hero-banner h2 {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- ヘッダー -->
     <header>
-        <h1>🌺 沖縄特産品 BtoB卸売ポータル</h1>
+        <div class="header-brand">
+            <h1>🏝️ 沖縄特産品 BtoB卸売ポータル</h1>
+        </div>
         <div class="badge">バイヤー専用カタログ</div>
     </header>
 
+    <!-- メインコンテンツ -->
     <div class="container">
-        <div class="intro">
-            <h2>日本の旬を、沖縄から世界へ。</h2>
-            <p>沖縄の豊かな自然とはぐくまれた厳選特産品の卸売カタログです。各商品の卸価格、最低ロット（MOQ）等の条件は下記をご確認ください。</p>
+        <!-- ヒーローセクション -->
+        <div class="hero-banner">
+            <h2>🌺 南国の輝きと厳選された旬を、沖縄から直接お届け</h2>
+            <p>沖縄の太陽と豊かな美ら海で育まれた、プレミアムな特産品の卸売専用カタログです。<br>卸価格や最低注文ロット（MOQ）の詳細は各商品カードよりご確認ください。</p>
+            
+            <!-- 検索バー -->
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="商品名で検索..." onkeyup="filterProducts()">
+            </div>
         </div>
 
+        <!-- 商品リスト出力エリア -->
         <div class="product-grid" id="catalogGrid">
-            <div class="loading">最新の商品カタログを読み込み中...</div>
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <div>最新の卸売カタログを読み込み中...</div>
+            </div>
         </div>
     </div>
 
+    <!-- フッター -->
     <footer>
-        &copy; ON SIGHT OKINAWA All Rights Reserved.
+        <p>&copy; ON SIGHT OKINAWA All Rights Reserved.</p>
     </footer>
 
     <script>
-        // ⚠️【ここにGoogleで発行されたウェブアプリのURLを貼り付けてください】
+        // Google Apps Script (GAS) WebアプリのURL
         const GAS_URL = "https://script.google.com/macros/s/AKfycbzHc_cxANoYwx1rfN7oigzrtwtAcghMzUbulNWCbFe7wq2qMN6kgLOnhqUKI9aCdS0y/exec";
+
+        let allProducts = []; // 取得した商品を保持
 
         function loadProducts() {
             const grid = document.getElementById('catalogGrid');
             
-            // スプレッドシートからデータを直接読み込む
+            // スプレッドシートからのデータ読み込み
             fetch(GAS_URL)
                 .then(response => response.json())
                 .then(products => {
-                    if (products.length === 0) {
-                        grid.innerHTML = '<div class="no-products">現在、登録されている商品はありません。</div>';
-                        return;
-                    }
-                    
-                    grid.innerHTML = ''; // ローディング表示をクリア
-                    
-                    products.forEach(product => {
-                        const card = document.createElement('div');
-                        card.className = 'product-card';
-                        card.innerHTML = `
-                            <div class="product-image" style="background-image: url('${product.image}');"></div>
-                            <div class="product-info">
-                                <div class="product-name">${product.name}</div>
-                                <div class="product-details">
-                                    <div class="detail-row">
-                                        <span class="detail-label">卸価格 (税別)</span>
-                                        <span class="detail-value price-value">￥${Number(product.price).toLocaleString()}</span>
-                                    </div>
-                                    <div class="detail-row">
-                                        <span class="detail-label">最低ロット (MOQ)</span>
-                                        <span class="detail-value">${product.lot}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                        grid.appendChild(card);
-                    });
+                    allProducts = products;
+                    renderProducts(allProducts);
                 })
                 .catch(err => {
-                    grid.innerHTML = '<div class="no-products">データの読み込みに失敗しました。URLの設定を確認してください。</div>';
+                    console.error('Error:', err);
+                    grid.innerHTML = `
+                        <div class="no-products">
+                            <p style="color: #e53e3e; font-weight: bold; margin-bottom: 8px;">データの読み込みに失敗しました。</p>
+                            <p style="font-size: 0.9rem;">Google Apps ScriptのWebアプリURL設定や権限をご確認ください。</p>
+                        </div>`;
                 });
+        }
+
+        // 商品一覧を描画する関数
+        function renderProducts(products) {
+            const grid = document.getElementById('catalogGrid');
+            
+            if (!products || products.length === 0) {
+                grid.innerHTML = '<div class="no-products">現在、該当する取扱商品はございません。</div>';
+                return;
+            }
+            
+            grid.innerHTML = ''; // クリア
+
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                // 画像URLが空の場合のフォールバック
+                const imageUrl = product.image || 'https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=600&q=80';
+                
+                card.innerHTML = `
+                    <div class="product-image-wrap">
+                        <div class="product-image" style="background-image: url('${imageUrl}');"></div>
+                        <span class="category-tag">沖縄直送</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        
+                        <div class="product-details">
+                            <div class="detail-row">
+                                <span class="detail-label">卸価格 (税別)</span>
+                                <span class="detail-value">
+                                    <span class="price-value">￥${Number(product.price).toLocaleString()}</span>
+                                    <span class="price-unit">/ 単位</span>
+                                </span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">最低ロット (MOQ)</span>
+                                <span class="detail-value">${product.lot}</span>
+                            </div>
+                        </div>
+
+                        <button class="action-button" onclick="alert('${product.name} のサンプル・お見積もり依頼を送信します。')">
+                            📦 サンプル・見積りを依頼
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // 検索フィルター機能
+        function filterProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allProducts.filter(p => p.name.toLowerCase().includes(query));
+            renderProducts(filtered);
         }
 
         // ページ読み込み時に実行
