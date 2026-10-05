@@ -7,17 +7,18 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-blue: #008da5;
-            --accent-coral: #ff6f61;
-            --accent-sand: #f5f0e6;
-            --dark-text: #1d2d35;
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-card: rgba(255, 255, 255, 0.92);
-            --glass-border: rgba(255, 255, 255, 0.6);
+            --primary-blue: #00b4d8;
+            --ocean-blue: #0077b6;
+            --vivid-orange: #ff7b00;
+            --vivid-pink: #ff007f;
+            --coral-yellow: #ffb703;
+            --glass-bg: rgba(255, 255, 255, 0.90);
+            --glass-card: rgba(255, 255, 255, 0.95);
+            --dark-text: #023e8a;
         }
 
         * {
@@ -27,23 +28,23 @@
         }
 
         body {
-            font-family: 'Noto Sans JP', sans-serif;
-            color: var(--dark-text);
+            font-family: 'Noto Sans JP', 'M PLUS Rounded 1c', sans-serif;
+            color: #1e293b;
             line-height: 1.6;
-            /* 背景に沖縄の透明なビーチ写真を設定 */
-            background: linear-gradient(180deg, rgba(15, 32, 39, 0.3) 0%, rgba(32, 58, 67, 0.1) 100%),
+            /* 鮮やかで眩しいエメラルドビーチ背景 */
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 180, 216, 0.15) 100%),
                         url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
         }
 
         /* -----------------------------------
-           ヘッダーエリア (グラスモーフィズム)
+           鮮やかなトロピカルヘッダー
         ----------------------------------- */
         header {
-            background: rgba(0, 114, 133, 0.82);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.92), rgba(0, 119, 182, 0.95));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             color: white;
             padding: 1.2rem 2rem;
             position: sticky;
@@ -52,34 +53,30 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            box-shadow: 0 4px 25px rgba(0, 180, 216, 0.3);
+            border-bottom: 3px solid var(--coral-yellow);
         }
 
         .header-brand h1 {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: 900;
             letter-spacing: 0.05em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
         .badge {
-            background: linear-gradient(135deg, #ff8c00, #ff5e62);
+            background: linear-gradient(135deg, var(--vivid-orange), var(--vivid-pink));
             color: white;
-            padding: 6px 14px;
+            padding: 6px 16px;
             border-radius: 30px;
-            font-size: 0.78rem;
-            font-weight: 700;
+            font-size: 0.82rem;
+            font-weight: 800;
             letter-spacing: 0.05em;
-            box-shadow: 0 2px 10px rgba(255, 110, 99, 0.4);
+            box-shadow: 0 4px 12px rgba(255, 0, 127, 0.3);
+            border: 2px solid #ffffff;
         }
 
         /* -----------------------------------
@@ -91,18 +88,19 @@
             padding: 2.5rem 1.5rem 4rem;
         }
 
-        /* ヒーローセクション */
+        /* 明るいヒーローセクション */
         .hero-banner {
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 2.5rem 2rem;
             margin-bottom: 2.5rem;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 35px rgba(0, 180, 216, 0.15);
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
 
         .hero-banner::before {
@@ -110,50 +108,53 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 6px;
-            height: 100%;
-            background: linear-gradient(180deg, #00c6ff, #0072ff);
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff007f, #ff7b00, #ffb703, #00b4d8);
         }
 
         .hero-banner h2 {
-            font-size: 1.8rem;
-            color: #005a68;
+            font-size: 1.9rem;
+            color: var(--dark-text);
             margin-bottom: 0.8rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-weight: 900;
+            line-height: 1.4;
         }
 
         .hero-banner p {
-            color: #4a5568;
-            font-size: 1rem;
+            color: #334155;
+            font-size: 1.05rem;
+            font-weight: 500;
             line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* 検索・絞り込みバー */
+        /* 検索バー */
         .search-container {
-            margin-top: 1.5rem;
+            margin-top: 1.8rem;
             display: flex;
-            gap: 10px;
+            justify-content: center;
         }
 
         .search-input {
             width: 100%;
-            max-width: 400px;
-            padding: 12px 20px;
+            max-width: 480px;
+            padding: 14px 24px;
             border-radius: 30px;
-            border: 1px solid #cbd5e0;
+            border: 2px solid var(--primary-blue);
             outline: none;
-            font-size: 0.95rem;
-            background: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
+            background: #ffffff;
+            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.15);
+            transition: all 0.3s ease;
         }
 
         .search-input:focus {
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(0, 141, 165, 0.2);
-            background: #ffffff;
+            border-color: var(--vivid-pink);
+            box-shadow: 0 8px 25px rgba(255, 0, 127, 0.25);
+            transform: translateY(-2px);
         }
 
         /* -----------------------------------
@@ -165,23 +166,24 @@
             gap: 2rem;
         }
 
-        /* 商品カード */
+        /* ポップ＆鮮やかな商品カード */
         .product-card {
             background: var(--glass-card);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 18px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 22px;
             overflow: hidden;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 12px 30px rgba(0, 119, 182, 0.12);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(0, 180, 216, 0.25);
+            border-color: var(--primary-blue);
         }
 
         /* 商品画像エリア */
@@ -202,20 +204,20 @@
         }
 
         .product-card:hover .product-image {
-            transform: scale(1.06);
+            transform: scale(1.08);
         }
 
         .category-tag {
             position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(4px);
-            color: white;
-            padding: 4px 12px;
+            top: 14px;
+            left: 14px;
+            background: linear-gradient(135deg, var(--vivid-orange), var(--coral-yellow));
+            color: #ffffff;
+            padding: 5px 14px;
             border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
+            font-size: 0.8rem;
+            font-weight: 800;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
         /* 商品情報エリア */
@@ -227,8 +229,8 @@
         }
 
         .product-name {
-            font-size: 1.15rem;
-            font-weight: 700;
+            font-size: 1.2rem;
+            font-weight: 800;
             color: var(--dark-text);
             margin-bottom: 1rem;
             line-height: 1.4;
@@ -236,9 +238,10 @@
         }
 
         .product-details {
-            background: rgba(245, 240, 230, 0.6);
-            border-radius: 12px;
-            padding: 1rem;
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 16px;
+            padding: 1.1rem;
             margin-bottom: 1.2rem;
         }
 
@@ -247,7 +250,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 8px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         .detail-row:last-child {
@@ -255,52 +258,52 @@
         }
 
         .detail-label {
-            color: #64748b;
-            font-size: 0.82rem;
+            color: #0369a1;
+            font-size: 0.85rem;
+            font-weight: 700;
         }
 
         .detail-value {
             font-weight: 700;
-            color: #334155;
+            color: #0f172a;
         }
 
         .price-value {
-            color: var(--accent-coral);
-            font-size: 1.3rem;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 800;
+            color: var(--vivid-pink);
+            font-size: 1.45rem;
+            font-weight: 900;
         }
 
         .price-unit {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #64748b;
             margin-left: 2px;
         }
 
-        /* アクションボタン */
+        /* トロピカルアクションボタン */
         .action-button {
             margin-top: auto;
             width: 100%;
-            background: linear-gradient(135deg, #008da5, #005a68);
+            background: linear-gradient(135deg, var(--vivid-orange), #ff5e62);
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 0.9rem;
+            padding: 14px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 0.98rem;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(0, 141, 165, 0.3);
+            box-shadow: 0 6px 18px rgba(255, 123, 0, 0.35);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .action-button:hover {
-            opacity: 0.92;
-            box-shadow: 0 6px 16px rgba(0, 141, 165, 0.4);
-            transform: translateY(-1px);
+            background: linear-gradient(135deg, #ff5e62, var(--vivid-pink));
+            box-shadow: 0 8px 22px rgba(255, 0, 127, 0.4);
+            transform: translateY(-2px);
         }
 
         /* ステータス表示 */
@@ -310,20 +313,21 @@
             padding: 4rem 2rem;
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            color: #4a5568;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-radius: 24px;
+            color: #0369a1;
+            font-size: 1.15rem;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.1);
         }
 
         .loading-spinner {
             display: inline-block;
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(0, 141, 165, 0.2);
+            width: 44px;
+            height: 44px;
+            border: 5px solid rgba(0, 180, 216, 0.2);
             border-radius: 50%;
-            border-top-color: var(--primary-blue);
-            animation: spin 1s ease-in-out infinite;
+            border-top-color: var(--vivid-orange);
+            animation: spin 0.8s ease-in-out infinite;
             margin-bottom: 1rem;
         }
 
@@ -337,25 +341,25 @@
         footer {
             text-align: center;
             padding: 2.5rem 1rem;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(10px);
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.85rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, var(--ocean-blue), #03045e);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-top: 4px solid var(--coral-yellow);
         }
 
         /* レスポンシブ調整 */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
                 text-align: center;
             }
             .hero-banner {
-                padding: 1.5rem;
+                padding: 1.8rem 1.2rem;
             }
             .hero-banner h2 {
-                font-size: 1.4rem;
+                font-size: 1.45rem;
             }
         }
     </style>
@@ -365,21 +369,21 @@
     <!-- ヘッダー -->
     <header>
         <div class="header-brand">
-            <h1>🏝️ 沖縄特産品 BtoB卸売ポータル</h1>
+            <h1>🌺 沖縄特産品 BtoB卸売ポータル</h1>
         </div>
-        <div class="badge">バイヤー専用カタログ</div>
+        <div class="badge">☀️ バイヤー専用カタログ</div>
     </header>
 
     <!-- メインコンテンツ -->
     <div class="container">
         <!-- ヒーローセクション -->
         <div class="hero-banner">
-            <h2>🌺 南国の輝きと厳選された旬を、沖縄から直接お届け</h2>
-            <p>沖縄の太陽と豊かな美ら海で育まれた、プレミアムな特産品の卸売専用カタログです。<br>卸価格や最低注文ロット（MOQ）の詳細は各商品カードよりご確認ください。</p>
+            <h2>✨ 太陽と美ら海が育んだ最高品質を、沖縄から直接お届け！</h2>
+            <p>厳選された旬の特産品を取り揃えた卸売専用ポータルです。<br>卸価格や最低ロット（MOQ）をご確認のうえ、お気軽にお問い合わせください。</p>
             
             <!-- 検索バー -->
             <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="商品名で検索..." onkeyup="filterProducts()">
+                <input type="text" id="searchInput" class="search-input" placeholder="🔍 商品名でキーワード検索..." onkeyup="filterProducts()">
             </div>
         </div>
 
@@ -417,8 +421,8 @@
                     console.error('Error:', err);
                     grid.innerHTML = `
                         <div class="no-products">
-                            <p style="color: #e53e3e; font-weight: bold; margin-bottom: 8px;">データの読み込みに失敗しました。</p>
-                            <p style="font-size: 0.9rem;">Google Apps ScriptのWebアプリURL設定や権限をご確認ください。</p>
+                            <p style="color: #ff007f; font-weight: bold; margin-bottom: 8px;">データの読み込みに失敗しました。</p>
+                            <p style="font-size: 0.9rem;">GASのURL設定や接続をご確認ください。</p>
                         </div>`;
                 });
         }
@@ -444,7 +448,7 @@
                 card.innerHTML = `
                     <div class="product-image-wrap">
                         <div class="product-image" style="background-image: url('${imageUrl}');"></div>
-                        <span class="category-tag">沖縄直送</span>
+                        <span class="category-tag">🌴 沖縄直送</span>
                     </div>
                     <div class="product-info">
                         <div class="product-name">${product.name}</div>
